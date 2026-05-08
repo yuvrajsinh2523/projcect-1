@@ -6,14 +6,19 @@ const listing=new Schema({
         type:String,
         require:true
     },
-    discription:{
+    description:{
         type:String,
         require:true
     },
-    image:{
+    image:{filename:{
         type:String,
-        default:"https://unsplash.com/photos/a-large-couch-sitting-on-top-of-a-patio-wnMnoSXvn1s",
-        set:(v)=>v===" " ?"https://unsplash.com/photos/a-large-couch-sitting-on-top-of-a-patio-wnMnoSXvn1s":v
+        default:"listing image",
+    },
+     url: {
+            type: String,
+            default:
+            "https://unsplash.com/photos/a-large-couch-sitting-on-top-of-a-patio-wnMnoSXvn1s"
+        }
     },
     price:{
         type:Number,
