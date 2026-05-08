@@ -22,3 +22,18 @@ app.get("/",(req,res)=>{
     res.send("this is root");
 })
 
+app.get("/listing",(req,res)=>{
+    const user1=new List({
+        title:"home",
+        discription:"this is a home",
+        price:1200,
+        location:"Gandhinagar",
+        country:"india"
+    });
+    user1.save().then((res)=>{
+        console.log(res);
+    }).catch((err)=>{
+        console.log(err);
+    })
+})
+
