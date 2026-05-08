@@ -14,6 +14,11 @@ main().then((res)=>{
 async function main(){
     await mongoose.connect(MONGO_url);
 }
+
+app.set("view engine","ejs");
+app.set("views",path.join(__dirname,"/views"))
+ 
+app.use(express.urlencoded({extended:true}));
 app.listen(8080,()=>{
     console.log("your port is working");
 })
@@ -35,5 +40,11 @@ app.get("/listing",(req,res)=>{
     }).catch((err)=>{
         console.log(err);
     })
+})
+
+app.get("/showall",async (req,res)=>{
+let allData=await listing.find({});
+res.render("listing/show",{allData})
+
 })
 
