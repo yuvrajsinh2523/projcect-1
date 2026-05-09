@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Information</title>
+</head>
+<body>
+    <h3>Edit your information</h3>
+
+    <form action="/show/<%=also._id%>?_method=PUT" method="post">
+    <label for="">Change title:</label>
+    <input type="text" name="listing[title]" value=<%=also.title%> placeholder="Write title">
+    <br>
+       <label for="">Enter Image URL:</label>
+    <input type="text" name="listing[image]"value=<%=also.image%> placeholder="Enter image url">
+    <br>
+       <label for="">change Description:</label>
+       <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <textarea name="llisting[description]" id="" placeholder="Enter description" cols="25" rows="5"><%=also.description%></textarea>
+    <br>
+       <label for="">Enter price you want:</label>
+    <input type="text" name="listing[price]" value=<%=also.price%>  placeholder="Enter price">
+    <br>
+       <label for="">Enter your location:</label>
+    <input type="text" name="listing[location]" value=<%=also.location%>  placeholder="Enter location">
+    <br>
+       <label for="">Enter Your country name:</label>
+    <input type="text" name="listing[country]" value=<%=also.country%>  placeholder="Enter country name">
+    <br><br>
+    <button>Edit</button>
+    </form>
+</body>
+</html>
