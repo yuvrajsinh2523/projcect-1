@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show perticuler</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+   <h3> Title:
+    <br> <b><%=perti.title%></b></h3> <br><br>
+   <ul>
+    <img src="<%=perti.image.url%>" alt="">
+    <br><br>
+    <li>Descriptions: <%=perti.description%></li>
+    <li>Price: &#8377;<%=perti.price.toLocaleString("en-IN")%></li>
+    <li>Location: <%=perti.location%></li>
+    <li>Country: <%=perti.country%></li>
+   </ul>
+
+   <a href="/show/<%=perti._id%>/edit">Edit your Details</a><br><br>
+   <form action="/show/<%=perti._id%>?_method=delete" method="post">
+    <button>Delete</button>
+   </form>
+</body>
+</html>
