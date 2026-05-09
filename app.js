@@ -1,56 +1,70 @@
 const express=require("express");
-const app=express();
 const mongoose=require("mongoose");
+const methodoverride=require("method-override");
+const path=require("path");
+const port=8080;
+const app=express();
 
-const MONGO_url="mongodb://127.0.0.1:27017/wondestlust";
+
+const Model=require("./models/listing.js")
+
+
+app.set("view engine","ejs");
+app.set("views",path.join(__dirname,"/views"));
+app.use(express.urlencoded({extended:true}));
+app.use(methodoverride("_method"));
+app.use(express.static(path.join(__dirname,"public")));
+
+
+const MONGO_URL="mongodb://127.0.0.1:27017/bnb";
 
 main().then((res)=>{
     console.log("connected");
 }).catch((err)=>{
     console.log(err);
-});
-
-
+})
 async function main(){
-    await mongoose.connect(MONGO_url);
+
+    await mongoose.connect(MONGO_URL)
 }
 
-app.set("view engine","ejs");
-app.set("views",path.join(__dirname,"/views"))
- 
-app.use(express.urlencoded({extended:true}));
-app.listen(8080,()=>{
-    console.log("your port is working");
+app.listen(port,()=>{
+    console.log(`your port ${port} is working`);
 })
 
-app.get("/",(req,res)=>{
-    res.send("this is root");
+app.get("/show",async (req,res)=>{
+  let Showall= await Model.find();
+  res.render("view.ejs",{Showall});
 })
-
-app.get("/listing",(req,res)=>{
-    const user1=new List({
-        title:"home",
-        discription:"this is a home",
-        price:1200,
-        location:"Gandhinagar",
-        country:"india"
-    });
-    user1.save().then((res)=>{
-        console.log(res);
-    }).catch((err)=>{
-        console.log(err);
-    })
+app.get("/show/new",(req,res)=>{
+    res.render("new.ejs");
 })
-
-app.get("/showall",async (req,res)=>{
-let allData=await listing.find({});
-res.render("listing/show",{allData})
-
-})
-
-app.get("/showall/:id",async (req,res)=>{
+app.get("/show/:id",async (req,res)=>{
     let {id}=req.params;
-    let listItem=await listing.findById(id);
-    res.render("listing/show1.ejs",{listItem});
+    const  perti=await Model.findById(id);
+    res.render("view1.ejs",{perti});
 })
 
+app.post("/show",async (req,res)=>{
+   await  Model.insertOne(req.body.listing);
+   res.redirect('/show');
+});
+
+app.get("/show/:id/edit",async (req,res)=>{
+    let {id}=req.params;
+    let also=await Model.findById(id);
+   
+    res.render("edit.ejs",{also})
+})
+
+app.put("/show/:id",async (req,res)=>{
+    let {id}=req.params;
+   await Model.findByIdAndUpdate(id,{...req.body.listing});
+    res.redirect(`/show/${id}`);
+})
+
+app.delete("/show/:id",async (req,res)=>{
+    let {id}=req.params;
+    await Model.findByIdAndDelete(id);
+    res.redirect("/show");
+})
