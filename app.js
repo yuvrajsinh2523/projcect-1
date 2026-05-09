@@ -48,3 +48,9 @@ res.render("listing/show",{allData})
 
 })
 
+app.get("/showall/:id",async (req,res)=>{
+    let {id}=req.params;
+    let listItem=await listing.findById(id);
+    res.render("listing/show1.ejs",{listItem});
+})
+
