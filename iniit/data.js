@@ -1,8 +1,7 @@
 const mongoose=require("mongoose");
-const List=require("./models/listing.js");
 
-const sampleListings = [
-  {
+
+const sempleData=[{
     title: "Cozy Beachfront Cottage",
     description:
       "Escape to this charming beachfront cottage for a relaxing getaway. Enjoy stunning ocean views and easy access to the beach.",
@@ -352,4 +351,4 @@ const sampleListings = [
   },
 ];
 
-module.exports={data:sampleListings};
+module.exports={data:sempleData}
