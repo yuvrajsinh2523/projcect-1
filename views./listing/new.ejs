@@ -1,34 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add new List</title>
-</head>
-<body>
+<%layout("layouts/boilerplate.ejs")%>
+
     <h3>Create a new List</h3>
-    <br><br>
-    <form action="/show" method="post">
-    <label for="">Enter title:</label>
-    <input type="text" name="listing[title]" placeholder="Write title">
-    <br>
-       <label for="">Enter Image URL:</label>
-    <input type="text" name="listing[image]" placeholder="Enter image url">
-    <br>
-       <label for="">Enter Description:</label>
-       <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <textarea name="listing[description]" id="" placeholder="Enter description" cols="25" rows="5"></textarea>
-    <br>
-       <label for="">Enter price you want:</label>
-    <input type="text" name="listing[price]" placeholder="Enter price">
-    <br>
-       <label for="">Enter your location:</label>
-    <input type="text" name="listing[location]" placeholder="Enter location">
-    <br>
-       <label for="">Enter Your country name:</label>
-    <input type="text" name="listing[country]" placeholder="Enter country name">
-    <br><br>
-    <button>Edit</button>
-    </form>
-</body>
-</html>
+    
+
+    <div class="row ">
+
+      <div class="col-8 offset=2">
+
+         <form action="/show" method="post" >
+
+         <label for="title" class="form-label">Enter title:</label>
+         <input type="text" class="form-control" name="listing[title]" placeholder="Write title">
+
+         <br>
+            <label for="" class="form-label">Enter Image URL:</label>
+         <input type="text" class="form-control" name="listing[image]" placeholder="Enter image url">
+         <br>
+
+            <label for="">Enter Description:</label>
+            <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         <textarea name="listing[description]" class="form-control"
+         id="" placeholder="Enter description" cols="25" rows="5"></textarea>
+         <br>
+
+            <label for="" class="form-label">Enter price you want:</label>
+         <input type="text" class="form-control" name="listing[price]" placeholder="Enter price">
+         <br>
+
+            <label for="" class="form-label">Enter your location:</label>
+         <input type="text" class="form-control" name="listing[location]" placeholder="Enter location">
+         <br>
+
+            <label for="" class="form-label">Enter Your country name:</label>
+         <input type="text" class="form-control" name="listing[country]" placeholder="Enter country name">
+         <br><br>
+         
+         <button class="btn btn-dark">Edit</button>
+         </form>
+
+      </div>
+
+
+    </div>
