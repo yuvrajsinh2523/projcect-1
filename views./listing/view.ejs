@@ -1,19 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View all</title>
-</head>
+
+<% layout("layouts/boilerplate.ejs")%>
 <body>
     <br><br>
-    <form action="/show/new" method="get">
+    <!-- <form action="/show/new" method="get">
         <button>Add New</button>
-    </form>
+    </form> -->
     <br><br>
-    <%for(let data of Showall){%>
-        <a href="/show/<%=data._id%>"><%=data.title%></a>
-        <br>
-    <%}%>
+
+    <div class="row row-cols-lg-3 row-cols-md-3 row-cols-sm-1">
+
+      <%for(let data of Showall){%>
+
+        <a href="/show/<%=data._id%>" class="show-link">
+            <div class="card">
+   <img src="<%= data.image.url%>" class="card-img-top" alt="data.image" style="height: 22rem;">
+    <div class="card-img-overlay"></div>
+   <div class="card-body">
+     <p class="card-text">
+         Title:<%=data.title%>
+         <br>
+         <b>Price:&#8377;<%=Number(data.price).toLocaleString("en-IN") %></b>
+     </p>
+   </div>
+ </div>
+
+        </a>
+   
+  <%}%>
+    </div>
+   
+        
+        
+   
 </body>
-</html>
