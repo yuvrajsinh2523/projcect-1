@@ -4,6 +4,7 @@ const methodoverride=require("method-override");
 const path=require("path");
 const port=8080;
 const app=express();
+const ejsMate=require("ejs-mate");
 
 
 const Model=require("./models/listing.js")
@@ -14,6 +15,7 @@ app.set("views",path.join(__dirname,"/views"));
 app.use(express.urlencoded({extended:true}));
 app.use(methodoverride("_method"));
 app.use(express.static(path.join(__dirname,"public")));
+app.engine("ejs",ejsMate);
 
 
 const MONGO_URL="mongodb://127.0.0.1:27017/bnb";
@@ -34,15 +36,15 @@ app.listen(port,()=>{
 
 app.get("/show",async (req,res)=>{
   let Showall= await Model.find();
-  res.render("view.ejs",{Showall});
+  res.render("listing/view",{Showall});
 })
 app.get("/show/new",(req,res)=>{
-    res.render("new.ejs");
+    res.render("listing/new");
 })
 app.get("/show/:id",async (req,res)=>{
     let {id}=req.params;
     const  perti=await Model.findById(id);
-    res.render("view1.ejs",{perti});
+    res.render("listing/view1",{perti});
 })
 
 app.post("/show",async (req,res)=>{
@@ -54,7 +56,7 @@ app.get("/show/:id/edit",async (req,res)=>{
     let {id}=req.params;
     let also=await Model.findById(id);
    
-    res.render("edit.ejs",{also})
+    res.render("listing/edit",{also})
 })
 
 app.put("/show/:id",async (req,res)=>{
@@ -66,5 +68,5 @@ app.put("/show/:id",async (req,res)=>{
 app.delete("/show/:id",async (req,res)=>{
     let {id}=req.params;
     await Model.findByIdAndDelete(id);
-    res.redirect("/show");
+    res.redirect("/show")
 })
